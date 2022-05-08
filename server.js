@@ -23,8 +23,6 @@ const httpServer = createServer(function (req, res){
 
 const io = new Server(httpServer);
 
-const users = {}
-
 var usernames = {};
 
 var rooms = ['Lobby'];
@@ -62,7 +60,6 @@ io.sockets.on('connection', function (socket) {
         socket.broadcast.to(newroom).emit('updatechat', 'SERVER', socket.username+' has joined this room');
         socket.emit('updaterooms', rooms, newroom);
     });
-
 
 
     socket.on('disconnect', function(){
